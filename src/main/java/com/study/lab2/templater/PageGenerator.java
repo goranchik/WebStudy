@@ -1,4 +1,4 @@
-package com.study.lab1.templater;
+package com.study.lab2.templater;
 
 import freemarker.template.Configuration;
 import freemarker.template.Template;
@@ -12,7 +12,7 @@ import java.util.Map;
 
 
 public class PageGenerator {
-    private static final String HTML_DIR = "templates/lab1";
+    private static final String HTML_DIR = "templates/lab2/public";
 
     private static PageGenerator pageGenerator;
     private final Configuration cfg;

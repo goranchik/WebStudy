@@ -24,11 +24,19 @@ public class AccountService {
         return sessionIdToProfile.get(sessionId);
     }
 
+    public Map<String, UserProfile> getAllUserProfiles() {
+        return loginToProfile;
+    }
+
     public void addSession(String sessionId, UserProfile userProfile) {
         sessionIdToProfile.put(sessionId, userProfile);
     }
 
     public void deleteSession(String sessionId) {
         sessionIdToProfile.remove(sessionId);
+    }
+
+    public void deleteUser(String login) {
+        loginToProfile.remove(login);
     }
 }

@@ -1,16 +1,18 @@
 package com.study.lab2.servlets;
 
+import com.study.lab2.templater.PageGenerator;
 import com.study.lab2.accounts.AccountService;
 import com.study.lab2.accounts.UserProfile;
 import com.google.gson.Gson;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
-public class SessionsServlet extends HttpServlet {
+public class SessionsServlet extends AbstractServlet {
     private final AccountService accountService;
 
     public SessionsServlet(AccountService accountService) {
@@ -52,12 +54,16 @@ public class SessionsServlet extends HttpServlet {
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
             return;
         }
+        String sessionId = request.getSession().getId();
+        accountService.addSession(sessionId, profile);
 
-        accountService.addSession(request.getSession().getId(), profile);
-        Gson gson = new Gson();
-        String json = gson.toJson(profile);
         response.setContentType("text/html;charset=utf-8");
-        response.getWriter().println(json);
+        response.getWriter().println(PageGenerator
+                        .instance()
+                        .getPage("profile.html",
+                                createSessionData(sessionId, profile)
+                        )
+        );
         response.setStatus(HttpServletResponse.SC_OK);
     }
 

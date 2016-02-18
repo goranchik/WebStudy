@@ -22,13 +22,13 @@ public class Main {
         context.addServlet(new ServletHolder(new UsersServlet(accountService)), "/users");
         context.addServlet(new ServletHolder(new SessionsServlet(accountService)), "/sessions");
 
-        ResourceHandler resource_handler = new ResourceHandler();
-        resource_handler.setResourceBase("templates/lab2/public");
+        ResourceHandler resourceHandler = new ResourceHandler();
+        resourceHandler.setResourceBase("templates/lab2/public");
 
         HandlerList handlers = new HandlerList();
-        handlers.setHandlers(new Handler[]{resource_handler, context});
+        handlers.setHandlers(new Handler[]{resourceHandler, context});
 
-        Server server = new Server(8080);
+        Server server = new Server(8085);
         server.setHandler(handlers);
 
         server.start();

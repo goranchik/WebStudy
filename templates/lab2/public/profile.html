@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Profile</title>
+</head>
+<body>
+<#if profiles?has_content>
+    <#assign keys = profiles?keys>
+        <#list keys as user>
+            <h2>Profile for user ${user} </h2>
+            <h3><a href="/users?user=${profiles[user].login}&action=change">Change profile</a></h3>
+            <h3><a href="/users?user=${profiles[user].login}&action=delete">Delete profile</a></h3>
+
+            <p>Login: ${profiles[user].login}</p>
+
+            <p>Password: ${profiles[user].pass}</p>
+
+            <p>Email: ${profiles[user].email}</p>
+        </#list>
+<#else>
+    <h2>Profile</h2>
+    <h3><a href="/users?user=${profile.login}&action=change">Change profile</a></h3>
+    <h3><a href="/users?user=${profile.login}&action=delete">Delete profile</a></h3>
+    <p>Login: ${profile.login}</p>
+
+    <p>Password: ${profile.pass}</p>
+
+    <p>Email: ${profile.email}</p>
+</#if>
+</body>
+</html>

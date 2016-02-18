@@ -1,0 +1,14 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Delete Profile</title>
+</head>
+<body>
+<h2>Delete Profile for ${profile.login}</h2>
+<form action="/users" method="delete" >
+    <input type="hidden" name="login" value="${profile.login}">
+    <input type="submit" value="Delete">
+</form>
+</body>
+</html>
